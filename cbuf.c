@@ -1,6 +1,6 @@
 /**
  *  @file cbuf.c
- *  @version 0.0.0
+ *  @version 0.1.0-dev0
  *  @date %TODAY%
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
@@ -58,7 +58,7 @@ cbuf_free(struct cbuf *p)
 const char *
 cbuf_version(void)
 {
-   return "0.0.0";
+   return "0.1.0-dev0";
 }
 
 /*** cbuf_init() ***/

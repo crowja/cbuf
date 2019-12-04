@@ -1,6 +1,6 @@
 /**
  *  @file cbuf.h
- *  @version 0.0.0
+ *  @version 0.1.0-dev0
  *  @date %TODAY%
  *  @copyright %COPYRIGHT%
  *  @brief Equivalents of fgetc() and ungetc() using a string.
