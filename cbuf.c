@@ -102,7 +102,7 @@ cbuf_get(struct cbuf *p)
 /*** cbuf_unget() ***/
 
 int
-cbuf_unget(struct cbuf *p, char c)
+cbuf_unget(struct cbuf *p, const char c)
 {
    if (_IS_NULL(p->x))                           /* TODO combine these checks later */
       return EOF;
