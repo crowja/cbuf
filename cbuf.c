@@ -1,7 +1,7 @@
 /**
  *  @file cbuf.c
  *  @version 0.1.1-dev0
- *  @date %TODAY%
+ *  @date Fri Dec  6 21:45:29 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
  *  @details FIXME
