@@ -20,43 +20,43 @@ TESTS = t/test
 cbuf.o: cbuf.c cbuf.h
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) -o $@ cbuf.c
 
-check: cbuf.o
+check:
 	@for i in $(TESTS); \
 	do \
 	  echo "--------------------"; \
 	  echo "Running test $$i ..."; \
 	  ( $(CC)    $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(OTHER_SOURCE) \
-		-o t/a.out $$i.c cbuf.o $(LDFLAGS) ) \
+		-o t/a.out $$i.c cbuf.c $(LDFLAGS) ) \
 	  && ( t/a.out ); \
 	done 
 
-vcheck: cbuf.o
+vcheck:
 	@for i in $(TESTS); \
 	do \
 	  echo "--------------------"; \
 	  echo "Running test $$i ..."; \
 	  ( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(OTHER_SOURCE) \
-		-o t/a.out $$i.c cbuf.o $(LDFLAGS) ) \
+		-o t/a.out $$i.c cbuf.c $(LDFLAGS) ) \
 	  && ( valgrind $(VALGRIND_FLAGS) t/a.out ); \
 	done 
 
-scheck: cbuf.o
+scheck:
 	@for i in $(TESTS); \
 	do \
 	  echo "--------------------"; \
 	  echo "Running test $$i ..."; \
 	  ( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(GCC_SANITIZE_FLAGS) $(OTHER_SOURCE) \
-		-o t/a.out $$i.c cbuf.o $(LDFLAGS) ) \
+		-o t/a.out $$i.c cbuf.c $(LDFLAGS) ) \
 	  && ( t/a.out ); \
 	done 
 
-echeck: cbuf.o
+echeck:
 	@for i in $(TESTS); \
 	do \
 	  echo "--------------------"; \
 	  echo "Running test $$i ..."; \
 	  ( $(CC)    $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(OTHER_SOURCE) \
-		-o t/a.out $$i.c cbuf.o $(LDFLAGS_EFENCE) ) \
+		-o t/a.out $$i.c cbuf.c $(LDFLAGS_EFENCE) ) \
 	  && ( LD_PRELOAD=libefence.so ./t/a.out ); \
 	done 
 
