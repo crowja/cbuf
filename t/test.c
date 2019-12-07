@@ -80,9 +80,8 @@ test_get(void)
    cbuf_free(z);
 }
 
-
 static void
-test_unget(void)
+test_unget1(void)
 {
    struct cbuf *z;
    char        test_str1[] = "Now is the time for all old dogs ...";
@@ -91,7 +90,7 @@ test_unget(void)
    char        c;
    unsigned    count;
 
-   _printf_test_name("test_unget()", NULL);
+   _printf_test_name("test_unget1", "cbuf_get, cbuf_unget");
 
    z = cbuf_new();
    cbuf_init(z, test_str1);
@@ -132,6 +131,29 @@ test_unget(void)
    cbuf_free(z);
 }
 
+static void
+test_unget2(void)
+{
+   struct cbuf *z;
+   char        test_str[] = "ABCDEFG";
+   char        c1, c2;
+
+   _printf_test_name("test_unget2", "cbuf_get, cbuf_unget");
+
+   z = cbuf_new();
+   cbuf_init(z, test_str);
+
+   c1 = cbuf_get(z);                             /* removes A */
+   c2 = cbuf_get(z);                             /* removes B */
+   cbuf_get(z);                                  /* removes C */
+   cbuf_unget(z, 'J');                           /* prepends J */
+   c1 = cbuf_get(z);                             /* removes J */
+   c2 = cbuf_get(z);                             /* removes D */
+   ASSERT_EQUALS(c1, 'J');
+   ASSERT_EQUALS(c2, test_str[3]);
+
+   cbuf_free(z);
+}
 
 static void
 test_null_input(void)
@@ -232,7 +254,8 @@ main(void)
    test_stub();
    RUN(test_constr);
    RUN(test_get);
-   RUN(test_unget);
+   RUN(test_unget1);
+   RUN(test_unget2);
    RUN(test_null_input);
    RUN(test_init_init);
    RUN(test_stress_1);
