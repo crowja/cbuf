@@ -49,7 +49,7 @@ echeck: cbuf.o
 	  && ( LD_PRELOAD=libefence.so ./t/a.out ); \
 	done 
 
-indent:
+indent: stamp
 	@indent $(INDENT_FLAGS) cbuf.c
 	@indent $(INDENT_FLAGS) cbuf.h
 	@indent $(INDENT_FLAGS) t/test.c
