@@ -16,26 +16,23 @@
 #endif
 #define _PACKAGE_NAME "cbuf"
 
-struct cbuf;
+struct cbuf;                                /* intentionally opaque */
 
 /**
  *  @brief Constructor for a cbuf object.
  *  @details Creates a cbuf object. Free later with cbuf_free().
  *  @returns On success returns a pointer to a new cbuf object, NULL otherwise.
  */
-
 struct cbuf *cbuf_new(void);
 
 /**
  *  @brief Clean up and free a cbuf structure.
  */
-
 void        cbuf_free(struct cbuf *p);
 
 /**
  *  @brief Return the version of this package.
  */
-
 const char *cbuf_version(void);
 
 /**
@@ -45,7 +42,6 @@ const char *cbuf_version(void);
  *  @returns Value of the next character in the cbuf (char cast as an int
  *  similar to fgetc()) or EOF at the end of the cbuf.
  */
-
 int         cbuf_get(struct cbuf *p);
 
 /**
@@ -58,7 +54,6 @@ int         cbuf_get(struct cbuf *p);
  *  by cbuf_free().
  *  @returns On success returns nonzero, zero otherwise.
  */
-
 int         cbuf_init(struct cbuf *p, const char *x);
 
 /**
@@ -71,7 +66,6 @@ int         cbuf_init(struct cbuf *p, const char *x);
  *  @returns On success returns the character positioned as the next 
  *  character for cbuf_get(), EOF otherwise.
  */
-
-int         cbuf_unget(struct cbuf *p, char c);
+int         cbuf_unget(struct cbuf *p, const char c);
 
 #endif
