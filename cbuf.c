@@ -28,8 +28,6 @@ struct cbuf
   unsigned pos;
 };
 
-/*** cbuf_new() ***/
-
 struct cbuf *
 cbuf_new (void)
 {
@@ -45,8 +43,6 @@ cbuf_new (void)
   return tp;
 }
 
-/*** cbuf_free() ***/
-
 void
 cbuf_free (struct cbuf *p)
 {
@@ -54,15 +50,11 @@ cbuf_free (struct cbuf *p)
   _FREE (p);
 }
 
-/*** cbuf_version() ***/
-
 const char *
 cbuf_version (void)
 {
   return "0.1.1-dev0";
 }
-
-/*** cbuf_init() ***/
 
 int
 cbuf_init (struct cbuf *p, const char *str)
@@ -87,8 +79,6 @@ cbuf_init (struct cbuf *p, const char *str)
     return 0;
 }
 
-/*** cbuf_get() ***/
-
 int
 cbuf_get (struct cbuf *p)
 {
@@ -101,8 +91,6 @@ cbuf_get (struct cbuf *p)
   return (int) (p->x)[p->pos++];
 
 }
-
-/*** cbuf_unget() ***/
 
 int
 cbuf_unget (struct cbuf *p, const char c)
