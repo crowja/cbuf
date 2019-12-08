@@ -1,7 +1,7 @@
 /**
  *  @file cbuf.h
  *  @version 0.1.1-dev0
- *  @date Fri Dec  6 21:45:29 CST 2019
+ *  @date Sat Dec  7 20:54:17 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief Equivalents of fgetc() and ungetc() using a string.
  *  @details Provides the equivalents of fgetc() and ungetc() using a string
@@ -16,24 +16,24 @@
 #endif
 #define _PACKAGE_NAME "cbuf"
 
-struct cbuf;                                /* intentionally opaque */
+struct cbuf;			/* intentionally opaque */
 
 /**
  *  @brief Constructor for a cbuf object.
  *  @details Creates a cbuf object. Free later with cbuf_free().
  *  @returns On success returns a pointer to a new cbuf object, NULL otherwise.
  */
-struct cbuf *cbuf_new(void);
+struct cbuf *cbuf_new (void);
 
 /**
  *  @brief Clean up and free a cbuf structure.
  */
-void        cbuf_free(struct cbuf *p);
+void cbuf_free (struct cbuf *p);
 
 /**
  *  @brief Return the version of this package.
  */
-const char *cbuf_version(void);
+const char *cbuf_version (void);
 
 /**
  *  @brief Get the next character from a cbuf object.
@@ -42,7 +42,7 @@ const char *cbuf_version(void);
  *  @returns Value of the next character in the cbuf (char cast as an int
  *  similar to fgetc()) or EOF at the end of the cbuf.
  */
-int         cbuf_get(struct cbuf *p);
+int cbuf_get (struct cbuf *p);
 
 /**
  *
@@ -54,7 +54,7 @@ int         cbuf_get(struct cbuf *p);
  *  by cbuf_free().
  *  @returns On success returns nonzero, zero otherwise.
  */
-int         cbuf_init(struct cbuf *p, const char *x);
+int cbuf_init (struct cbuf *p, const char *x);
 
 /**
  *  @brief Unget a character from a cbuf object.
@@ -66,6 +66,6 @@ int         cbuf_init(struct cbuf *p, const char *x);
  *  @returns On success returns the character positioned as the next 
  *  character for cbuf_get(), EOF otherwise.
  */
-int         cbuf_unget(struct cbuf *p, const char c);
+int cbuf_unget (struct cbuf *p, const char c);
 
 #endif
