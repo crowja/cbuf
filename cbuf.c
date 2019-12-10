@@ -1,7 +1,7 @@
 /**
  *  @file cbuf.c
  *  @version 0.1.2-dev0
- *  @date Sat Dec  7 22:12:40 CST 2019
+ *  @date Tue Dec 10 10:16:11 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
  *  @details FIXME
@@ -22,87 +22,85 @@
 #endif
 #define _FREE(p)      ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
 
-struct cbuf
-{
-  char *x;
-  unsigned pos;
+struct cbuf {
+   char       *x;
+   unsigned    pos;
 };
 
 struct cbuf *
-cbuf_new (void)
+cbuf_new(void)
 {
-  struct cbuf *tp;
+   struct cbuf *tp;
 
-  tp = (struct cbuf *) malloc (sizeof (struct cbuf));
-  if (_IS_NULL (tp))
-    return NULL;
+   tp = (struct cbuf *) malloc(sizeof(struct cbuf));
+   if (_IS_NULL(tp))
+      return NULL;
 
-  tp->x = NULL;
-  tp->pos = EOF;
+   tp->x = NULL;
+   tp->pos = EOF;
 
-  return tp;
+   return tp;
 }
 
 void
-cbuf_free (struct cbuf *p)
+cbuf_free(struct cbuf **pp)
 {
-  _FREE (p->x);
-  _FREE (p);
+   _FREE((*pp)->x);
+   _FREE((*pp));
+   *pp = NULL;
 }
 
 const char *
-cbuf_version (void)
+cbuf_version(void)
 {
-  return "0.1.2-dev0";
+   return "0.1.2-dev0";
 }
 
 int
-cbuf_init (struct cbuf *p, const char *str)
+cbuf_init(struct cbuf *p, const char *str)
 {
-  if (_IS_NULL (str))
-    {
-      _FREE (p->x);
+   if (_IS_NULL(str)) {
+      _FREE(p->x);
       p->x = NULL;
       return 0;
-    }
+   }
 
-  p->x = realloc (p->x, sizeof (char) * (1 + strlen (str)));
+   p->x = realloc(p->x, sizeof(char) * (1 + strlen(str)));
 
-  if (!_IS_NULL (p->x))
-    {
-      strcpy (p->x, str);
+   if (!_IS_NULL(p->x)) {
+      strcpy(p->x, str);
       p->pos = 0;
       return 1;
-    }
+   }
 
-  else
-    return 0;
+   else
+      return 0;
 }
 
 int
-cbuf_get (struct cbuf *p)
+cbuf_get(struct cbuf *p)
 {
-  if (_IS_NULL (p->x))		/* TODO combine these checks later */
-    return EOF;
+   if (_IS_NULL(p->x))                           /* TODO combine these checks later */
+      return EOF;
 
-  if (p->pos == strlen (p->x))
-    return EOF;
+   if (p->pos == strlen(p->x))
+      return EOF;
 
-  return (int) (p->x)[p->pos++];
+   return (int) (p->x)[p->pos++];
 
 }
 
 int
-cbuf_unget (struct cbuf *p, const char c)
+cbuf_unget(struct cbuf *p, const char c)
 {
-  if (_IS_NULL (p->x))		/* TODO combine these checks later */
-    return EOF;
+   if (_IS_NULL(p->x))                           /* TODO combine these checks later */
+      return EOF;
 
-  if (p->pos == 0)
-    return EOF;
+   if (p->pos == 0)
+      return EOF;
 
-  (p->x)[--p->pos] = c;
-  return c;
+   (p->x)[--p->pos] = c;
+   return c;
 }
 
 #undef _IS_NULL
