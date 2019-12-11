@@ -87,7 +87,6 @@ cbuf_get(struct cbuf *p)
       return EOF;
 
    return (int) (p->x)[p->pos++];
-
 }
 
 int
