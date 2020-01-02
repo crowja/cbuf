@@ -1,10 +1,9 @@
 /**
  *  @file cbuf.c
  *  @version 0.1.3-dev0
- *  @date Tue Dec 10 10:16:11 CST 2019
- *  @copyright %COPYRIGHT%
- *  @brief FIXME
- *  @details FIXME
+ *  @date Wed Jan  1 21:24:24 CST 2020
+ *  @copyright 2020 John A. Crow <crowja@gmail.com>
+ *  @license Unlicense <http://unlicense.org/>
  */
 
 #include <stdlib.h>
