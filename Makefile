@@ -66,8 +66,8 @@ indent: stamp
 	@indent $(INDENT_FLAGS) t/test.c
 
 stamp:
-	@bash stamper.bash cbuf.c
-	@bash stamper.bash cbuf.h
+	@stamper.bash cbuf.c
+	@stamper.bash cbuf.h
 
 clean:
 	@/bin/rm -f *.o *~ *.BAK *.bak core.*
