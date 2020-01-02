@@ -1,6 +1,6 @@
 /**
  *  @file cbuf.h
- *  @version 0.1.3-dev0
+ *  @version 0.2.0-dev0
  *  @date Wed Jan  1 21:24:24 CST 2020
  *  @copyright 2020 John A. Crow <crowja@gmail.com>
  *  @license Unlicense <http://unlicense.org/>
