@@ -4,36 +4,36 @@
 #include "cbuf.h"
 #include "t/tinytest.h"
 
-#ifdef  _COLOR_CODE
-#undef  _COLOR_CODE
+#ifdef  COLOR_CODE
+#undef  COLOR_CODE
 #endif
-#define _COLOR_CODE       0x1B
+#define COLOR_CODE       0x1B
 
-#ifdef  _COLOR_RED
-#undef  _COLOR_RED
+#ifdef  COLOR_RED
+#undef  COLOR_RED
 #endif
-#define _COLOR_RED        "[1;31m"
+#define COLOR_RED        "[1;31m"
 
-#ifdef  _COLOR_GREEN
-#undef  _COLOR_GREEN
+#ifdef  COLOR_GREEN
+#undef  COLOR_GREEN
 #endif
-#define _COLOR_GREEN      "[1;32m"
+#define COLOR_GREEN      "[1;32m"
 
-#ifdef  _COLOR_YELLOW
-#undef  _COLOR_YELLOW
+#ifdef  COLOR_YELLOW
+#undef  COLOR_YELLOW
 #endif
-#define _COLOR_YELLOW     "[1;33m"
+#define COLOR_YELLOW     "[1;33m"
 
-#ifdef  _COLOR_RESET
-#undef  _COLOR_RESET
+#ifdef  COLOR_RESET
+#undef  COLOR_RESET
 #endif
-#define _COLOR_RESET      "[0m"
+#define COLOR_RESET      "[0m"
 
 
 static void
-_printf_test_name(char *name, char *info)
+printf_test_name(char *name, char *info)
 {
-   printf("%c%s%s%c%s", _COLOR_CODE, _COLOR_YELLOW, name, _COLOR_CODE, _COLOR_RESET);
+   printf("%c%s%s%c%s", COLOR_CODE, COLOR_YELLOW, name, COLOR_CODE, COLOR_RESET);
 
    if (NULL != info)
       printf(" [%s]\n", info);
@@ -47,7 +47,7 @@ test_constr(void)
 {
    struct cbuf *z;
 
-   _printf_test_name("test_constr()", NULL);
+   printf_test_name("test_constr()", NULL);
 
    z = cbuf_new();
    ASSERT("Constructor test", z);
@@ -64,7 +64,7 @@ test_get(void)
    char        c;
    unsigned    count = 0;
 
-   _printf_test_name("test_get()", NULL);
+   printf_test_name("test_get()", NULL);
 
    z = cbuf_new();
    cbuf_init(z, test_str);
@@ -92,7 +92,7 @@ test_unget1(void)
    char        c;
    unsigned    count;
 
-   _printf_test_name("test_unget1", "cbuf_get, cbuf_unget");
+   printf_test_name("test_unget1", "cbuf_get, cbuf_unget");
 
    z = cbuf_new();
    cbuf_init(z, test_str1);
@@ -141,7 +141,7 @@ test_unget2(void)
    char        test_str[] = "ABCDEFG";
    char        c1, c2;
 
-   _printf_test_name("test_unget2", "cbuf_get, cbuf_unget");
+   printf_test_name("test_unget2", "cbuf_get, cbuf_unget");
 
    z = cbuf_new();
    cbuf_init(z, test_str);
@@ -165,7 +165,7 @@ test_null_input(void)
    struct cbuf *z;
    char        c;
 
-   _printf_test_name("test_null_input()", NULL);
+   printf_test_name("test_null_input()", NULL);
 
    z = cbuf_new();
 
@@ -183,7 +183,7 @@ test_init_init(void)
    struct cbuf *z;
    int         c;
 
-   _printf_test_name("test_init_init()", NULL);
+   printf_test_name("test_init_init()", NULL);
 
    z = cbuf_new();
    cbuf_init(z, "ABCDE FGHIJ KLMNO PQRST UVWXY Z");
@@ -209,7 +209,7 @@ test_stress_1(void)
    struct cbuf *z;
    int         i;
 
-   _printf_test_name("test_stress_1()", NULL);
+   printf_test_name("test_stress_1()", NULL);
 
    for (i = 0; i < 50000; i++) {
       z = cbuf_new();
@@ -230,7 +230,7 @@ test_empty(void)
 {
    struct cbuf *z;
 
-   _printf_test_name("test_empty()", NULL);
+   printf_test_name("test_empty()", NULL);
 
    z = cbuf_new();
    ASSERT_EQUALS(1, cbuf_init(z, ""));
@@ -246,7 +246,7 @@ test_stub(void)
 {
    struct cbuf *z;
 
-   _printf_test_name("test_stub()", NULL);
+   printf_test_name("test_stub()", NULL);
 
    z = cbuf_new();
    ASSERT("Test stub", z);

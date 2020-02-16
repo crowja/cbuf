@@ -1,21 +1,16 @@
 /**
  *  @file cbuf.h
  *  @version 0.2.0-dev0
- *  @date Wed Jan  1 21:24:24 CST 2020
- *  @copyright 2020 John A. Crow <crowja@gmail.com>
+ *  @date Sun Feb 16, 2020 03:56:21 PM CST
+ *  @copyright 2018-2020 John A. Crow <crowja@gmail.com>
  *  @license Unlicense <http://unlicense.org/>
  *  @brief Equivalents of fgetc() and ungetc() using a string.
  *  @details Provides the equivalents of fgetc() and ungetc() using a string
  *  as input rather than a stream.
  */
 
-#ifndef _CBUF_H_
-#define _CBUF_H_
-
-#ifdef  _PACKAGE_NAME
-#undef  _PACKAGE_NAME
-#endif
-#define _PACKAGE_NAME "cbuf"
+#ifndef CBUF_H_
+#define CBUF_H_
 
 struct cbuf;                                /* intentionally opaque */
 
@@ -46,7 +41,6 @@ const char *cbuf_version(void);
 int         cbuf_get(struct cbuf *p);
 
 /**
- *
  *  @brief Initialize a cbuf object.
  *  @details Initialize a cbuf object with the value of the character string
  *  to use.

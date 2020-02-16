@@ -1,8 +1,8 @@
 /**
  *  @file cbuf.c
  *  @version 0.2.0-dev0
- *  @date Wed Jan  1 21:24:24 CST 2020
- *  @copyright 2020 John A. Crow <crowja@gmail.com>
+ *  @date Sun Feb 16, 2020 03:56:21 PM CST
+ *  @copyright 2018-2020 John A. Crow <crowja@gmail.com>
  *  @license Unlicense <http://unlicense.org/>
  */
 
@@ -11,15 +11,15 @@
 #include <string.h>
 #include "cbuf.h"
 
-#ifdef  _IS_NULL
-#undef  _IS_NULL
+#ifdef  IS_NULL
+#undef  IS_NULL
 #endif
-#define _IS_NULL(p)   ((NULL == (p)) ? (1) : (0))
+#define IS_NULL(p)   ((NULL == (p)) ? (1) : (0))
 
-#ifdef  _FREE
-#undef  _FREE
+#ifdef  FREE
+#undef  FREE
 #endif
-#define _FREE(p)      ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
+#define FREE(p)      ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
 
 struct cbuf {
    char       *x;
@@ -32,7 +32,7 @@ cbuf_new(void)
    struct cbuf *tp;
 
    tp = (struct cbuf *) malloc(sizeof(struct cbuf));
-   if (_IS_NULL(tp))
+   if (IS_NULL(tp))
       return NULL;
 
    tp->x = NULL;
@@ -44,8 +44,8 @@ cbuf_new(void)
 void
 cbuf_free(struct cbuf **pp)
 {
-   _FREE((*pp)->x);
-   _FREE((*pp));
+   FREE((*pp)->x);
+   FREE((*pp));
    *pp = NULL;
 }
 
@@ -58,15 +58,15 @@ cbuf_version(void)
 int
 cbuf_init(struct cbuf *p, const char *str)
 {
-   if (_IS_NULL(str)) {
-      _FREE(p->x);
+   if (IS_NULL(str)) {
+      FREE(p->x);
       p->x = NULL;
       return 0;
    }
 
    p->x = realloc(p->x, sizeof(char) * (1 + strlen(str)));
 
-   if (!_IS_NULL(p->x)) {
+   if (!IS_NULL(p->x)) {
       strcpy(p->x, str);
       p->pos = 0;
       return 1;
@@ -79,7 +79,7 @@ cbuf_init(struct cbuf *p, const char *str)
 int
 cbuf_get(struct cbuf *p)
 {
-   if (_IS_NULL(p->x))                           /* TODO combine these checks later */
+   if (IS_NULL(p->x))                            /* TODO combine these checks later */
       return EOF;
 
    if (p->pos == strlen(p->x))
@@ -91,7 +91,7 @@ cbuf_get(struct cbuf *p)
 int
 cbuf_unget(struct cbuf *p, const char c)
 {
-   if (_IS_NULL(p->x))                           /* TODO combine these checks later */
+   if (IS_NULL(p->x))                            /* TODO combine these checks later */
       return EOF;
 
    if (p->pos == 0)
@@ -101,5 +101,5 @@ cbuf_unget(struct cbuf *p, const char c)
    return c;
 }
 
-#undef _IS_NULL
-#undef _FREE
+#undef IS_NULL
+#undef FREE
